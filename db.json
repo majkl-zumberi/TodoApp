@@ -1,0 +1,66 @@
+{
+    "users": [
+      {
+        "id": 0,
+        "username": "majjey",
+        "name": "majkl",
+        "surname": "zumberi"
+      }
+    ],
+    "todos": [
+      {
+        "id": 0,
+        "title": "Ripasso angular",
+        "description": "ripasso dei modules| corso Angular avanzato",
+        "steps": [
+          {
+            "id": 0,
+            "done": true,
+            "title": "core"
+          },
+          {
+            "id": 1,
+            "done": true,
+            "title": "shared"
+          },
+          {
+            "id": 2,
+            "done": false,
+            "title": "features"
+          },
+          {
+            "id": 3,
+            "done": false,
+            "title": "Pratica"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "title": "ripasso java",
+        "description": "riguardare i progetti fatti con hibernate",
+        "steps": [
+          {
+            "id": 0,
+            "done": true,
+            "title": "dynamicDao"
+          },
+          {
+            "id": 1,
+            "done": true,
+            "title": "cgf.xml"
+          },
+          {
+            "id": 2,
+            "done": false,
+            "title": "Teoria"
+          },
+          {
+            "id": 3,
+            "done": false,
+            "title": "guardare tutorials su youtube"
+          }
+        ]
+      }
+    ]
+  }
