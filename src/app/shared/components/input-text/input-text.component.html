@@ -1,0 +1,5 @@
+<div class="uk-margin">
+    <label for="input">{{label}}</label>
+    <input class="uk-input uk-form-width-medium" #inputRef id="input" [value]="inputValue" (input)="setInputValue(inputRef.value)"
+    (blur)="onTouched()">
+</div>
