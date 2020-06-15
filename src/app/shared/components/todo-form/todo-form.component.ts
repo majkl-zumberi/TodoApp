@@ -36,6 +36,7 @@ export class TodoFormComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+
     if (changes && changes['todo'] && this.todo != null) {
       this.stepsArray = this.todo.steps;
       this.stepsControl.clear();
@@ -62,8 +63,13 @@ export class TodoFormComponent implements OnChanges {
     });
     this.stepsControl.push(this.fb.group({
       done: false,
-      title: ['', Validators.required]
+      title: ['', Validators.required],
+      id: this.stepsArray.length>0 ? this.stepsArray.length-1 : this.stepsArray.length
     }));
+  }
+  remStepToForm(indice:number) {
+    this.stepsArray.filter(step=> step.id!=indice);
+    this.stepsControl.removeAt(indice);//this.stepsControl.removeAt(this.stepsControl.value.findIndex(step => step.id === indice));
   }
 
   confirmChanges() {

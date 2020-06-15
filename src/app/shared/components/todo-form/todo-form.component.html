@@ -3,7 +3,7 @@
     <app-input-text formControlName="description" [label]="'Descrizione'"></app-input-text>
     <div formArrayName="steps">
         <ng-container *ngIf="stepsArray.length > 0">
-            <div *ngFor="let step of todo.steps; let i=index" [formGroupName]="i">
+            <div *ngFor="let step of todo.steps; let indice=index" [formGroupName]="indice">
                 <!-- <input class="uk-checkbox" type="checkbox" formControlName="done"> -->
                 <div class="pretty p-svg p-curve p-icon p-round p-jelly">
                     <input type="checkbox" [(ngModel)]="step.done" formControlName="done"/>
@@ -16,10 +16,10 @@
                     </div>
                 </div>
                 <app-input-text formControlName="title" [label]="'Titolo Step'"></app-input-text>
-                <button class="uk-button uk-button-danger">Rimuovi Step</button>
+                <a class="uk-button uk-button-danger" (click)="remStepToForm(indice)">Rimuovi Step</a>
             </div>
         </ng-container>
-        <button class="uk-button uk-button-danger" (click)="addStepToForm()">Aggiungi Step</button>
+        <a class="uk-button uk-button-danger" (click)="addStepToForm()">Aggiungi Step</a>
     </div>
     <button class="uk-button uk-button-danger" (click)="cancel()">Annulla</button>
     <button class="uk-button uk-button-danger" type="submit" [disabled]="todoForm.invalid">Conferma</button>
