@@ -68,8 +68,9 @@ export class TodoFormComponent implements OnChanges {
     }));
   }
   remStepToForm(indice:number) {
-    this.stepsArray.filter(step=> step.id!=indice);
-    this.stepsControl.removeAt(indice);//this.stepsControl.removeAt(this.stepsControl.value.findIndex(step => step.id === indice));
+    this.stepsArray.splice(indice,1);
+    this.stepsControl.removeAt(indice);
+    
   }
 
   confirmChanges() {
