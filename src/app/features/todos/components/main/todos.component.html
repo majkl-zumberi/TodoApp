@@ -5,6 +5,11 @@
 				<div class="uk-width-1-1@m">
 					<div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
 						<h3 class="uk-card-title uk-text-center">I miei TODO</h3>
+						<ng-container *ngIf="httperror">
+							<div class="uk-alert-danger" uk-alert>
+								<p>{{httperror}}</p>
+							</div>
+						</ng-container>
 						<section>
                             <app-todo-preview *ngFor="let todo of todosList | async" [todo]="todo" (detailEvent)="showDetail(todo)"></app-todo-preview>
                         </section>

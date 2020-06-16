@@ -10,7 +10,7 @@ import { TodosFacadeService } from '../services/todos-facade.service';
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-
+  httperror:string=null;
   get todosList(): Observable<Todo[]> {
     return this.todosFacadeService.tods$;
   }
@@ -19,6 +19,7 @@ export class TodosComponent implements OnInit {
 
   ngOnInit(): void {
     this.todosFacadeService.getAllTodos();
+    this.todosFacadeService.todoErr$.subscribe(err=>this.httperror=err);
   }
 
   showDetail(todo: Todo) {

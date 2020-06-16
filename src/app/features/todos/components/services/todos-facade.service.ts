@@ -14,11 +14,16 @@ export class TodosFacadeService {
   private todSelectedSubject: BehaviorSubject<Todo> = new BehaviorSubject(null);
   todoSelected$ = this.todSelectedSubject.asObservable();
 
+  private todoErrSubject:Subject<string>=new Subject();
+  todoErr$=this.todoErrSubject.asObservable();
   constructor(private todosServerService: TodosServerService, private router: Router) { }
 
   getAllTodos() {
     this.todosServerService.retrieveAllTodos().subscribe(todos => {
       this.todsSubject.next(todos);
+    },err=>{
+      console.log("ERROREEEE",err);
+      this.todoErrSubject.next("si è verificato un errore durante il caricamento. riprovare più tardi");
     });
   }
 
