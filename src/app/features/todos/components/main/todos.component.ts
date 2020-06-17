@@ -18,12 +18,21 @@ export class TodosComponent implements OnInit {
   constructor(private todosFacadeService: TodosFacadeService) { }
 
   ngOnInit(): void {
+    this.init();
+  }
+
+  init():void{
     this.todosFacadeService.getAllTodos();
     this.todosFacadeService.todoErr$.subscribe(err=>this.httperror=err);
   }
-
   showDetail(todo: Todo) {
     this.todosFacadeService.goToDetail(todo.id);
+  }
+
+  removeTodo(todo:Todo){
+    console.log("emitted: ",todo.title);
+    this.todosFacadeService.removeTodo(todo.id);
+    this.init();
   }
 
 }
