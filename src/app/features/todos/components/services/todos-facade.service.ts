@@ -50,9 +50,15 @@ export class TodosFacadeService {
   }
 
   removeTodo(id:number){
-    this.todosServerService.deleteTodo(id).subscribe();
-    this.getAllTodos();
-    this.router.navigateByUrl('/todos');
+    this.todosServerService.deleteTodo(id).subscribe(()=>{
+      this.getAllTodos();
+      this.router.navigateByUrl('/todos');
+    });
   }
-
+  addNewTodo(newTodo:Todo){
+    this.todosServerService.addNewTodo(newTodo).subscribe(()=>{
+      this.getAllTodos();
+      this.router.navigateByUrl('/todos');
+    });
+  }
 }
