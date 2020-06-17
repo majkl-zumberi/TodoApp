@@ -13,11 +13,17 @@ export class TodoPreviewComponent {
 
   @Output()
   detailEvent: EventEmitter<void> = new EventEmitter();
+  @Output()
+  deleteEvent: EventEmitter<void> = new EventEmitter();
 
   constructor() { }
 
   detailClick() {
     this.detailEvent.emit();
+  }
+  deleteTodo(todo:Todo){
+    console.log(`user try to delete ${todo.title}`);
+    this.deleteEvent.emit();
   }
 
 }
