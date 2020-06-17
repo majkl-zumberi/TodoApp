@@ -1,6 +1,9 @@
 <div>
     <div class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light">
-        <h3 class="uk-card-title">{{todo.title}}</h3>
+        <div class="flexy">
+            <h3 class="uk-card-title">{{todo.title}}</h3>
+            <button class="uk-close-large" type="button" (click)="deleteTodo(todo)" uk-close></button>
+        </div>
         <p>{{todo.description}}</p>
         <button class="uk-button uk-button-default round" (click)="detailClick()">Dettaglio</button>
     </div>
