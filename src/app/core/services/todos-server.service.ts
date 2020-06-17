@@ -14,10 +14,13 @@ export class TodosServerService {
   }
 
   retrieveTodoById(id: number): Observable<Todo>{
-    return this.httpCommunications.retrieveGetCall<Todo>("todos/"+id);
+    return this.httpCommunications.retrieveGetCall<Todo>(`todos/${id}`);
   }
 
   updateTodo(todo: Todo): Observable<Todo[]>{
-    return this.httpCommunications.retrievePutCall("todos/"+todo.id, todo);
+    return this.httpCommunications.retrievePutCall(`todos/${todo.id}`, todo);
+  }
+  deleteTodo(id:number): Observable<Todo[]>{
+    return this.httpCommunications.retrieveDeleteCall(`todos/${id}`);
   }
 }
