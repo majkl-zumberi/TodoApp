@@ -5,6 +5,11 @@
 				<div class="uk-width-1-1@m">
 					<div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
 						<h3 class="uk-card-title uk-text-center">I miei TODO</h3>
+						<div class="flexy">
+							<app-input-text [label]="'aggiungi un nuovo todo'" name="newTodo" [(ngModel)]="newTodo"></app-input-text>
+							<button class="uk-button uk-button-danger round" [disabled]="newTodo === ''" (click)="addNewTodo(newTodo)">aggiungi</button>
+						</div>
+						valore:{{newTodo}}
 						<ng-container *ngIf="httperror">
 							<div class="uk-alert-danger" uk-alert>
 								<p>{{httperror}}</p>

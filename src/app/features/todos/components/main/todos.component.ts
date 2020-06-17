@@ -16,7 +16,7 @@ export class TodosComponent implements OnInit {
   }
 
   constructor(private todosFacadeService: TodosFacadeService) { }
-
+  newTodo = "";
   ngOnInit(): void {
     this.init();
   }
@@ -32,6 +32,13 @@ export class TodosComponent implements OnInit {
   removeTodo(todo:Todo){
     console.log("emitted: ",todo.title);
     this.todosFacadeService.removeTodo(todo.id);
+    this.init();
+  }
+
+  addNewTodo(newTodo:string){
+    console.log(`user try to add new todo: ${newTodo}`);
+    let todoToAdd= {title:newTodo,description:'',steps:[]} as Todo
+    this.todosFacadeService.addNewTodo(todoToAdd);
     this.init();
   }
 
