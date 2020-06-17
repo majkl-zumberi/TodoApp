@@ -3,7 +3,7 @@
   <app-input-text formControlName="description" [label]="'Descrizione'"></app-input-text>
   <div formArrayName="steps">
     <ng-container *ngIf="stepsArray.length > 0">
-      <div *ngFor="let step of todo.steps; let indice=index" [formGroupName]="indice">
+      <div *ngFor="let step of stepsArray; let indice=index" [formGroupName]="indice">
         <!-- <input class="uk-checkbox" type="checkbox" formControlName="done"> -->
         <div class="pretty p-svg p-curve p-icon p-round p-jelly">
           <input type="checkbox" [(ngModel)]="step.done" formControlName="done" />
