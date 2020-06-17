@@ -49,4 +49,10 @@ export class TodosFacadeService {
     this.router.navigateByUrl('/todos/edit/' + id);
   }
 
+  removeTodo(id:number){
+    this.todosServerService.deleteTodo(id).subscribe();
+    this.getAllTodos();
+    this.router.navigateByUrl('/todos');
+  }
+
 }
