@@ -6,7 +6,7 @@
       <div *ngFor="let step of stepsArray; let indice=index" [formGroupName]="indice">
         <!-- <input class="uk-checkbox" type="checkbox" formControlName="done"> -->
         <div class="pretty p-svg p-curve p-icon p-round p-jelly">
-          <input type="checkbox" [(ngModel)]="step.done" formControlName="done" />
+          <input type="checkbox" formControlName="done" />
           <div class="state p-success">
             <!-- svg path -->
             <svg class="svg svg-icon" viewBox="0 0 20 20">
@@ -26,7 +26,7 @@
     </ng-container>
   </div>
   <div class="flexy">
-    <a class="uk-button uk-button-danger" (click)="addStepToForm()">Aggiungi Step</a>
+    <button class="uk-button uk-button-danger" (click)="addStepToForm()" type="button">Aggiungi Step</button>
     <button class="uk-button uk-button-danger" (click)="cancel()">Annulla</button>
     <button class="uk-button uk-button-danger" type="submit" [disabled]="todoForm.invalid">Conferma</button>
   </div>

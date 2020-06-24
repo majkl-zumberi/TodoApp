@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todo } from 'src/app/core/model/todo.interface';
 import { TodosFacadeService } from '../services/todos-facade.service';
+import { Store, select } from '@ngrx/store';
+import { selectTodos } from 'src/app/redux';
 
 @Component({
   selector: 'app-todos',
@@ -12,10 +14,11 @@ import { TodosFacadeService } from '../services/todos-facade.service';
 export class TodosComponent implements OnInit {
   httperror:string=null;
   get todosList(): Observable<Todo[]> {
-    return this.todosFacadeService.tods$;
+    //return this.todosFacadeService.tods$;
+    return this.Store.pipe(select(selectTodos));
   }
 
-  constructor(private todosFacadeService: TodosFacadeService) { }
+  constructor(private todosFacadeService: TodosFacadeService, private Store:Store) { }
   newTodo = "";
   ngOnInit(): void {
     this.init();

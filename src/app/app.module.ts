@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './redux/totos.reducers';
 //import { HttpIntercept } from './core/services/http-interceptor.service';
 
 @NgModule({
@@ -14,7 +16,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    StoreModule.forRoot({ todoState: reducer })
   ],
   providers: [
     //{ provide: ErrorHandler, useClass: SentryErrorHandler },

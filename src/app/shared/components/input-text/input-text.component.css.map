@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "input-text.component.scss"
+    ],
+    "names": [],
+    "file": "input-text.component.css"
+}

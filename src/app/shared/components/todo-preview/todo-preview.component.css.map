@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAA;EACF,aAAa,EAAE,IAAI;CACtB;;AACD,AAAA,MAAM,CAAA;EACF,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,QAAQ;EACrB,eAAe,EAAE,aAAa;CACjC",
+    "sources": [
+        "todo-preview.component.scss"
+    ],
+    "names": [],
+    "file": "todo-preview.component.css"
+}

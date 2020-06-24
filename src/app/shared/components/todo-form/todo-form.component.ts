@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Todo } from 'src/app/core/model/todo.interface';
 
+
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
@@ -56,6 +57,8 @@ export class TodoFormComponent implements OnChanges {
   }
 
   addStepToForm() {
+    console.log("len:",this.stepsArray.length);
+    this.stepsArray = Object.assign([], this.stepsArray);
     this.stepsArray.push({
       done: false,
       title: '',
@@ -68,9 +71,10 @@ export class TodoFormComponent implements OnChanges {
     }));
   }
   remStepToForm(indice:number) {
+    this.stepsArray = Object.assign([], this.stepsArray);
     this.stepsArray.splice(indice,1);
     this.stepsControl.removeAt(indice);
-    
+
   }
 
   confirmChanges() {
