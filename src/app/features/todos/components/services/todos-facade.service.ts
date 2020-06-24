@@ -5,7 +5,7 @@ import { TodosServerService } from 'src/app/core/services/todos-server.service';
 import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { Todo } from 'src/app/core/model/todo.interface';
 import { Store } from '@ngrx/store';
-import { initTodos, editTodo, insertTodo } from 'src/app/redux/todos.actions';
+import { initTodos, editTodo, insertTodo, removeTodo } from 'src/app/redux/todos.actions';
 
 @Injectable()
 export class TodosFacadeService {
@@ -37,15 +37,23 @@ export class TodosFacadeService {
     });
   }
 
+  removeTodo(id:number){
+    this.todosServerService.deleteTodo(id).subscribe((item:Todo)=>{
+      this.Store.dispatch(removeTodo({id}));
+      this.goToTodosHome();
+    });
+  }
+
+  addNewTodo(newTodo:Todo) {
+    this.todosServerService.addNewTodo(newTodo).subscribe((item: Todo) => {
+      this.Store.dispatch(insertTodo({todo: item}));
+      this.goToTodosHome();
+    });
+  }
+
   goToTodosHome() {
     this.router.navigateByUrl('/todos');
   }
-
-  /*getTodoById(id: number) {
-    this.todosServerService.retrieveTodoById(id).subscribe(todo => {
-      this.todSelectedSubject.next(todo);
-    });
-  }*/
 
   goToDetail(id: number) {
     this.router.navigateByUrl('/todos/detail/' + id);
@@ -53,20 +61,5 @@ export class TodosFacadeService {
 
   goToEdit(id: number) {
     this.router.navigateByUrl('/todos/edit/' + id);
-  }
-
-  removeTodo(id:number){
-    this.todosServerService.deleteTodo(id).subscribe(()=>{
-      this.getAllTodos();
-      this.router.navigateByUrl('/todos');
-    });
-  }
-
-
-  addNewTodo(newTodo:Todo) {
-    this.todosServerService.addNewTodo(newTodo).subscribe((item: Todo) => {
-      this.Store.dispatch(insertTodo({todo: item}));
-      this.goToTodosHome();
-    });
   }
 }
