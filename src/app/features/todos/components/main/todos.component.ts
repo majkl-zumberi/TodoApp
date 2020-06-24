@@ -21,13 +21,10 @@ export class TodosComponent implements OnInit {
   constructor(private todosFacadeService: TodosFacadeService, private Store:Store) { }
   newTodo = "";
   ngOnInit(): void {
-    this.init();
+    this.todosFacadeService.todoErr$.subscribe(err=>this.httperror=err);
+    this.todosFacadeService.getAllTodos();
   }
 
-  init():void{
-    this.todosFacadeService.getAllTodos();
-    this.todosFacadeService.todoErr$.subscribe(err=>this.httperror=err);
-  }
   showDetail(todo: Todo) {
     this.todosFacadeService.goToDetail(todo.id);
   }
@@ -35,14 +32,12 @@ export class TodosComponent implements OnInit {
   removeTodo(todo:Todo){
     console.log("emitted: ",todo.title);
     this.todosFacadeService.removeTodo(todo.id);
-    this.init();
   }
 
   addNewTodo(newTodo:string){
     console.log(`user try to add new todo: ${newTodo}`);
     let todoToAdd= {title:newTodo,description:'',steps:[]} as Todo
     this.todosFacadeService.addNewTodo(todoToAdd);
-    this.init();
   }
 
 }
