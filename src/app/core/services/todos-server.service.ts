@@ -23,7 +23,7 @@ export class TodosServerService {
   updateTodo(todo: Todo): Observable<Todo>{
     return this.httpCommunications.retrievePutCall(`todos/${todo.id}`, todo);
   }
-  deleteTodo(id:number): Observable<Todo[]>{
+  deleteTodo(id:number): Observable<Todo>{
     return this.httpCommunications.retrieveDeleteCall(`todos/${id}`);
   }
 
