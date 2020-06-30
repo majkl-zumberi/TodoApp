@@ -19,7 +19,7 @@ const todosReducer = createReducer(
     on(removeTodo,(state,{id}) => ({ ...state, todos:state.todos.filter(item=>item.id !==id) })),
     on(editTodo,(state,{todo}) => ({ ...state,todos:state.todos.map(item=>item.id===todo.id?todo:item) }))
   );
-  
+
   export function reducer(state: TodoState | undefined, action: Action) {
     return todosReducer(state, action);
   }

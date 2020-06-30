@@ -22,7 +22,7 @@ export class TodosComponent implements OnInit {
   newTodo = "";
   ngOnInit(): void {
     this.todosFacadeService.todoErr$.subscribe(err=>this.httperror=err);
-    this.todosFacadeService.getAllTodos();
+    //this.todosFacadeService.getAllTodos();
   }
 
   showDetail(todo: Todo) {

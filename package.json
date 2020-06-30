@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dev": "concurrently --kill-others \"npm run start\" \"json-server db.json --watch \""
   },
   "private": true,
   "dependencies": {
