@@ -1,11 +1,16 @@
-import { createSelector } from '@ngrx/store';
-import { TodoState } from './totos.reducers';
+import { createSelector, ActionReducerMap } from '@ngrx/store';
+import { TodoState,todosReducer } from './todos.reducers';
+import { UserState, authReducer } from './auth.reducers';
 
 
 export interface AppState {
   todoState:TodoState;
+  authState:UserState;
 }
-
+export const reducers: ActionReducerMap<AppState> = {
+  todoState: todosReducer,
+  authState: authReducer
+};
 export const selectTodoState = (state: AppState) => state.todoState;
 
 export const selectTodos = createSelector(
