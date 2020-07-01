@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './redux/totos.reducers';
+import { reducer } from './redux/todos.reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment'; // Angular CLI environment
+import { reducers } from './redux/index';
 //import { HttpIntercept } from './core/services/http-interceptor.service';
 
 @NgModule({
@@ -17,7 +20,11 @@ import { reducer } from './redux/totos.reducers';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    StoreModule.forRoot({ todoState: reducer })
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    })
   ],
   providers: [
     //{ provide: ErrorHandler, useClass: SentryErrorHandler },
