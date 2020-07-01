@@ -4,7 +4,20 @@
       "id": 0,
       "username": "majjey",
       "name": "majkl",
-      "surname": "zumberi"
+      "surname": "zumberi",
+      "password": "123"
+    }
+  ],
+  "forUsers": [
+    {
+      "id": 0,
+      "usersId": 0,
+      "todosId": 0
+    },
+    {
+      "id": 1,
+      "usersId": 0,
+      "todosId": 2
     }
   ],
   "todos": [
@@ -12,7 +25,6 @@
       "id": 0,
       "title": "Ripasso angular",
       "description": "ripasso dei modules| corso Angular avanzato",
-      "forUsers":[0],
       "steps": [
         {
           "id": 0,
