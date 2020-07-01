@@ -39,7 +39,7 @@ export class TodoFormComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
 
     if (changes && changes['todo'] && this.todo != null) {
-      this.stepsArray = this.todo.steps;
+      this.stepsArray = [...this.todo.steps];
       this.stepsControl.clear();
       this.stepsArray.forEach(step => {
         this.stepsControl.push(this.fb.group({
@@ -58,7 +58,7 @@ export class TodoFormComponent implements OnChanges {
 
   addStepToForm() {
     console.log("len:",this.stepsArray.length);
-    this.stepsArray = Object.assign([], this.stepsArray);
+   // this.stepsArray = Object.assign([], this.stepsArray);
     this.stepsArray.push({
       done: false,
       title: '',
@@ -71,7 +71,7 @@ export class TodoFormComponent implements OnChanges {
     }));
   }
   remStepToForm(indice:number) {
-    this.stepsArray = Object.assign([], this.stepsArray);
+  //  this.stepsArray = Object.assign([], this.stepsArray);
     this.stepsArray.splice(indice,1);
     this.stepsControl.removeAt(indice);
 
