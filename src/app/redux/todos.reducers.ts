@@ -12,7 +12,7 @@ export const initialState: TodoState = {
 };
 
 
-const todosReducer = createReducer(
+export const todosReducer = createReducer(
     initialState,
     on(initTodos, (state,{todos}) => ({ ...state, todos:todos })),
     on(insertTodo,(state,{todo}) => ({ ...state,todos:[...state.todos,todo] })),
