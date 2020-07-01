@@ -12,6 +12,7 @@
       "id": 0,
       "title": "Ripasso angular",
       "description": "ripasso dei modules| corso Angular avanzato",
+      "forUsers":[0],
       "steps": [
         {
           "id": 0,
