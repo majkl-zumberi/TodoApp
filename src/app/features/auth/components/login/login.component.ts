@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { AuthFacadeService } from '../services/auth-facade.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     }
 
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder,private authFacadeService:AuthFacadeService) {
     this.loginForm=this.fb.group({
       username:['',Validators.required],
       password:['',Validators.required]
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
   loginUser(){
     console.log("username:"+this.usernameControl.value);
     console.log("password:"+this.passwordControl.value);
+    this.authFacadeService.signIn(this.usernameControl.value,this.passwordControl.value);
   }
 
 }
