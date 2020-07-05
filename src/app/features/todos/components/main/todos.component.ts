@@ -36,7 +36,7 @@ export class TodosComponent implements OnInit {
 
   addNewTodo(newTodo:string){
     console.log(`user try to add new todo: ${newTodo}`);
-    let todoToAdd= {title:newTodo,description:'',steps:[]} as Todo
+    let todoToAdd= {title:newTodo,description:'',steps:[],forUser:[]} as Todo
     this.todosFacadeService.addNewTodo(todoToAdd);
   }
   assignToUser(event,todo:Todo){
