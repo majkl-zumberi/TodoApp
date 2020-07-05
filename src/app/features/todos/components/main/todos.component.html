@@ -1,29 +1,32 @@
 <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
-	<div class="uk-width-1-1">
-		<div class="uk-container">
-			<div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
-				<div class="uk-width-1-1@m">
-					<div class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
-						<h3 class="uk-card-title uk-text-center">I miei TODO</h3>
-						<div class="flexy">
-							<app-input-text [label]="'aggiungi un nuovo todo'" name="newTodo" [(ngModel)]="newTodo"></app-input-text>
-							<button class="uk-button uk-button-danger round" [disabled]="newTodo === ''" (click)="addNewTodo(newTodo)">aggiungi</button>
-						</div>
-						valore:{{newTodo}}
-						<ng-container *ngIf="httperror">
-							<div class="uk-alert-danger" uk-alert>
-								<p>{{httperror}}</p>
-							</div>
-						</ng-container>
-						<section>
-                            <app-todo-preview *ngFor="let todo of todosList | async" [todo]="todo" (detailEvent)="showDetail(todo)" (deleteEvent)="removeTodo(todo)"></app-todo-preview>
-                        </section>
-                        <section>
-                            <router-outlet></router-outlet>
-                        </section>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="uk-width-1-1">
+    <div class="uk-container">
+      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+        <div class="uk-width-1-1@m">
+          <div
+            class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+            <h3 class="uk-card-title uk-text-center">Todo pubblici</h3>
+            <div class="flexy">
+              <app-input-text [label]="'aggiungi un nuovo todo'" name="newTodo" [(ngModel)]="newTodo"></app-input-text>
+              <button class="uk-button uk-button-danger round" [disabled]="newTodo === ''"
+                (click)="addNewTodo(newTodo)">aggiungi</button>
+            </div>
+            valore:{{newTodo}}
+            <ng-container *ngIf="httperror">
+              <div class="uk-alert-danger" uk-alert>
+                <p>{{httperror}}</p>
+              </div>
+            </ng-container>
+            <section>
+              <app-todo-preview *ngFor="let todo of todosList | async" [todo]="todo" (detailEvent)="showDetail(todo)"
+                (deleteEvent)="removeTodo(todo)" (toggleEvent)="assignToUser($event,todo)"></app-todo-preview>
+            </section>
+            <section>
+              <router-outlet></router-outlet>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
