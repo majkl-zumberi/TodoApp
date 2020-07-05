@@ -3,12 +3,15 @@ import { User } from 'src/app/core/model/user.interface';
 import { Router } from '@angular/router';
 import { AuthServerService } from 'src/app/core/services/auth-server.service';
 import { Store } from '@ngrx/store';
-import { initUser } from 'src/app/redux/auth.actions';
+import { initUser, removeUser } from 'src/app/redux/auth.actions';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthFacadeService {
+  private errMessageSource=new Subject<string>();
+  errMessage$=this.errMessageSource.asObservable();
 
   constructor(private router:Router,private authServer:AuthServerService,private Store:Store) { }
   signIn(username:string, password:string){
@@ -27,7 +30,13 @@ export class AuthFacadeService {
         }
       });
       console.log("utente non trovato");
-      //this.errMessageSource.next("utente non trovato");
+      this.errMessageSource.next("utente non trovato");
     })
+  }
+
+  signOut(){
+    sessionStorage.removeItem('utente');
+    this.Store.dispatch(removeUser({}));
+    this.router.navigateByUrl("/auth/login");
   }
 }
