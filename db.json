@@ -8,23 +8,12 @@
       "password": "123"
     }
   ],
-  "forUsers": [
-    {
-      "id": 0,
-      "usersId": 0,
-      "todosId": 0
-    },
-    {
-      "id": 1,
-      "usersId": 0,
-      "todosId": 2
-    }
-  ],
   "todos": [
     {
       "id": 0,
       "title": "Ripasso angular",
       "description": "ripasso dei modules| corso Angular avanzato",
+      "forUser": [],
       "steps": [
         {
           "id": 0,
@@ -52,6 +41,11 @@
       "id": 1,
       "title": "ripasso java",
       "description": "riguardare i progetti fatti con hibernate",
+      "forUser": [
+        {
+          "username": "majjey"
+        }
+      ],
       "steps": [
         {
           "id": 0,
