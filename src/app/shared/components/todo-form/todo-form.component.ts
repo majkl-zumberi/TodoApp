@@ -15,7 +15,7 @@ export class TodoFormComponent implements OnChanges {
   todo: Todo;
 
   @Output()
-  formSubmitEvent: EventEmitter<Todo> = new EventEmitter();
+  formSubmitEvent: EventEmitter<Todo> = new EventEmitter<Todo>();
 
   @Output()
   undoEvent: EventEmitter<Todo> = new EventEmitter();
@@ -32,7 +32,8 @@ export class TodoFormComponent implements OnChanges {
       id: null,
       title: ['', Validators.required],
       description: ['', Validators.required],
-      steps: this.fb.array([])
+      steps: this.fb.array([]),
+      forUser: this.fb.array([])
     });
   }
 
@@ -48,10 +49,12 @@ export class TodoFormComponent implements OnChanges {
           title: [step.title, Validators.required]
         }));
       });
+      console.log("qui loggo",this.todo);
       this.todoForm.patchValue({
         id: this.todo.id,
         title: this.todo.title,
-        description: this.todo.description
+        description: this.todo.description,
+        forUser:this.todo.forUser
       })
     }
   }
@@ -78,7 +81,11 @@ export class TodoFormComponent implements OnChanges {
   }
 
   confirmChanges() {
-    this.formSubmitEvent.emit(this.todoForm.value);
+    console.log(this.todoForm.value);
+
+    let todoWithForUser={...this.todoForm.value,forUser:[...this.todo.forUser]} as Todo;
+
+    this.formSubmitEvent.emit(todoWithForUser);
   }
 
   cancel() {
