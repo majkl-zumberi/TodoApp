@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthFacadeService } from '../services/auth-facade.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-
+export class LoginComponent implements OnInit,OnDestroy {
+  loginError:string='';
   loginForm: FormGroup;
-
+  private sub:Subscription;
   get usernameControl():FormControl{
     return this.loginForm.get('username') as FormControl;
     }
@@ -33,6 +34,12 @@ export class LoginComponent implements OnInit {
     console.log("username:"+this.usernameControl.value);
     console.log("password:"+this.passwordControl.value);
     this.authFacadeService.signIn(this.usernameControl.value,this.passwordControl.value);
+    this.sub=this.authFacadeService.errMessage$.subscribe(message=>{
+      this.loginError=message;
+      console.log(message);
+    });
   }
-
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 }
