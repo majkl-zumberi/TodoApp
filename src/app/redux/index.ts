@@ -13,23 +13,31 @@ export const reducers: ActionReducerMap<AppState> = {
   authState: authReducer
 };
 export const selectTodoState = (state: AppState) => state.todoState;
+export const selectUserState = (state: AppState) => state.authState;
 
 export const selectTodos = createSelector(
  selectTodoState,
   (state: TodoState) => state.todos
 );
-export const selectTodosAssigned = createSelector(
+/*export const selectTodosAssigned = createSelector(
  selectTodoState,
   (state: TodoState, props: { username: string }) => state.todos.filter(todo=>{
 
-    /*let hasUsername=todo.forUser.find(t=>t.username=='majjey');
-    return hasUsername!==undefined;*/
+
     let sessionUser=JSON.parse(sessionStorage.getItem("utente")) as User;
     return todo.forUser.some(t=>t.username==sessionUser?.username);
 
     })
-);
+);*/
+export const selectTodosAssigned = createSelector(
+  selectTodoState,
+  selectUserState,
+   (Todsstate: TodoState,UserState:UserState) => Todsstate.todos.filter(todo=>{
 
+     return todo.forUser.some(t=>t.username==UserState.user.username);
+
+     })
+ );
 export const getTodoById = createSelector(
     selectTodoState,
     (state: TodoState, props: { id: number }) => state.todos.find(item => item.id === props.id)
