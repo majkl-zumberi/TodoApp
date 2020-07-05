@@ -5,6 +5,7 @@ import { AuthServerService } from 'src/app/core/services/auth-server.service';
 import { Store } from '@ngrx/store';
 import { initUser, removeUser } from 'src/app/redux/auth.actions';
 import { Subject } from 'rxjs';
+import { find, filter, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +15,21 @@ export class AuthFacadeService {
   errMessage$=this.errMessageSource.asObservable();
 
   constructor(private router:Router,private authServer:AuthServerService,private Store:Store) { }
+
   signIn(username:string, password:string){
-    this.authServer.retrieveAllUsers().subscribe(users=>{
-      users.forEach(user => {
-        console.log(user);
-        if (username == user.username && password == user.password){
-          console.log("utente trovato, pronto per il login");
-          let UserLogged= {
-             username: username, name:user.name,
-          } as User;
-          this.Store.dispatch(initUser({user:UserLogged}));
-          sessionStorage.setItem("utente", JSON.stringify(UserLogged));
-          this.router.navigateByUrl("/home");
-          return;
-        }
-      });
-      console.log("utente non trovato");
-      this.errMessageSource.next("utente non trovato");
+    this.authServer.retrieveAllUsers()
+    .pipe(
+     map(users=>
+      users.find(actualUser=>actualUser.username === username && actualUser.password === password))
+    )
+    .subscribe(user=>{
+      if(typeof user === 'undefined'){
+        this.errMessageSource.next("utente non trovato")
+      }else{
+        this.Store.dispatch(initUser({user:{username:user.username,name:user.name}as User})),
+        sessionStorage.setItem("utente", JSON.stringify({username:user.username,name:user.name})),
+        this.router.navigateByUrl("/home");
+      }
     })
   }
 
