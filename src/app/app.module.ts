@@ -10,11 +10,15 @@ import { reducer } from './redux/todos.reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'; // Angular CLI environment
 import { reducers } from './redux/index';
+import { MenuComponent } from './components/menu/menu.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 //import { HttpIntercept } from './core/services/http-interceptor.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
