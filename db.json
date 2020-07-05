@@ -13,7 +13,6 @@
       "id": 0,
       "title": "Ripasso angular",
       "description": "ripasso dei modules| corso Angular avanzato",
-      "forUser": [],
       "steps": [
         {
           "id": 0,
@@ -27,25 +26,21 @@
         },
         {
           "id": 2,
-          "done": false,
+          "done": true,
           "title": "features"
         },
         {
           "id": 3,
-          "done": false,
+          "done": true,
           "title": "Pratica"
         }
-      ]
+      ],
+      "forUser": []
     },
     {
       "id": 1,
       "title": "ripasso java",
       "description": "riguardare i progetti fatti con hibernate",
-      "forUser": [
-        {
-          "username": "majjey"
-        }
-      ],
       "steps": [
         {
           "id": 0,
@@ -66,6 +61,16 @@
           "id": 3,
           "done": false,
           "title": "guardare tutorials su youtube"
+        },
+        {
+          "id": 4,
+          "done": false,
+          "title": "riguardare i Beans di spring"
+        }
+      ],
+      "forUser": [
+        {
+          "username": "majjey"
         }
       ]
     }
