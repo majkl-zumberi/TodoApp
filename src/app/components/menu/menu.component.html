@@ -1,0 +1,31 @@
+<ng-container *ngIf="currentRoute!== '/auth/login' ">
+  <nav class="uk-navbar-container" uk-navbar>
+
+    <div class="uk-navbar-left">
+
+      <ul class="uk-navbar-nav">
+        <li><a routerLink="/home"  routerLinkActive="active">Home</a></li>
+        <li><a routerLink="/todos" routerLinkActive="active">Todos</a></li>
+      </ul>
+
+    </div>
+
+    <div class="uk-navbar-right">
+
+      <ul class="uk-navbar-nav">
+        <li>
+          <a> {{username}} </a>
+          <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li><a routerLink="/shared-with-me" routerLinkActive="active">visualizza todo condivisi con me</a></li>
+              <li><a (click)="signOut()">logOut</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+
+  </nav>
+</ng-container>
+<router-outlet></router-outlet>
