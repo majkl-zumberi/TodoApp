@@ -17,6 +17,16 @@ export const selectTodos = createSelector(
  selectTodoState,
   (state: TodoState) => state.todos
 );
+export const selectTodosAssigned = createSelector(
+ selectTodoState,
+  (state: TodoState, props: { username: string }) => state.todos.filter(todo=>{
+
+    /*let hasUsername=todo.forUser.find(t=>t.username=='majjey');
+    return hasUsername!==undefined;*/
+    return todo.forUser.some(t=>t.username=='majjey');
+
+    })
+);
 
 export const getTodoById = createSelector(
     selectTodoState,
