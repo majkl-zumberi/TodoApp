@@ -24,7 +24,7 @@ export class TodoPreviewComponent implements OnInit{
   constructor() { }
 
   ngOnInit(): void {
-    this.toggle=this.todo.forUser.some(t=>t.username==(JSON.parse(sessionStorage.getItem('utente')) as User)?.username)?true:false??false;
+    this.toggle=this.todo?.forUser.some(t=>t.username==(JSON.parse(sessionStorage.getItem('utente')) as User)?.username)?true:false??false;
   }
   detailClick() {
     this.detailEvent.emit();
