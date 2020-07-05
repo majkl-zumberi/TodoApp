@@ -1,6 +1,7 @@
 import { createSelector, ActionReducerMap } from '@ngrx/store';
 import { TodoState,todosReducer } from './todos.reducers';
 import { UserState, authReducer } from './auth.reducers';
+import { User } from '../core/model/user.interface';
 
 
 export interface AppState {
@@ -23,7 +24,8 @@ export const selectTodosAssigned = createSelector(
 
     /*let hasUsername=todo.forUser.find(t=>t.username=='majjey');
     return hasUsername!==undefined;*/
-    return todo.forUser.some(t=>t.username=='majjey');
+    let sessionUser=JSON.parse(sessionStorage.getItem("utente")) as User;
+    return todo.forUser.some(t=>t.username==sessionUser?.username);
 
     })
 );
