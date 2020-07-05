@@ -6,6 +6,7 @@ import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { Todo } from 'src/app/core/model/todo.interface';
 import { Store } from '@ngrx/store';
 import { initTodos, editTodo, insertTodo, removeTodo } from 'src/app/redux/todos.actions';
+import { User } from 'src/app/core/model/user.interface';
 
 @Injectable()
 export class TodosFacadeService {
@@ -61,5 +62,25 @@ export class TodosFacadeService {
 
   goToEdit(id: number) {
     this.router.navigateByUrl('/todos/edit/' + id);
+  }
+  assignTodo(todo: Todo,remOrAdd:boolean){
+    if(remOrAdd){
+      let SessionUser=JSON.parse(sessionStorage.getItem('utente')) as User;
+
+      let userAssigned={
+        username:SessionUser.username
+      };
+
+      let assignedTodo={...todo,forUser:[...todo.forUser,userAssigned]};
+      //assignedTodo.forUser.push({username:SessionUser.username});
+      this.editTodo(assignedTodo);
+    }else{
+      let SessionUser=JSON.parse(sessionStorage.getItem('utente')) as User;
+
+      let removeAssigned={...todo};
+      removeAssigned.forUser=removeAssigned.forUser.filter(utente=>utente.username!==SessionUser?.username);
+      console.log("rimosso l'utente ",removeAssigned);
+      this.editTodo(removeAssigned);
+    }
   }
 }
