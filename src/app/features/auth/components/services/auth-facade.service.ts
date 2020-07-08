@@ -3,7 +3,7 @@ import { User } from 'src/app/core/model/user.interface';
 import { Router } from '@angular/router';
 import { AuthServerService } from 'src/app/core/services/auth-server.service';
 import { Store } from '@ngrx/store';
-import { initUser, removeUser } from 'src/app/redux/auth.actions';
+import { initUser, removeUser } from 'src/app/redux/user/auth.actions';
 import { Subject } from 'rxjs';
 import { find, filter, map } from 'rxjs/operators';
 
