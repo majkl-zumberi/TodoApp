@@ -13,7 +13,6 @@ import { Store, select } from '@ngrx/store';
 export class TodsSharedComponent implements OnInit {
   httperror:string=null;
   get todosList(): Observable<Todo[]> {
-    //return this.todosFacadeService.tods$;
     return this.Store.pipe(select(selectTodosAssigned));
   }
 
@@ -21,7 +20,6 @@ export class TodsSharedComponent implements OnInit {
   newTodo = "";
   ngOnInit(): void {
     this.todosFacadeService.todoErr$.subscribe(err=>this.httperror=err);
-    //this.todosFacadeService.getAllTodos();
   }
 
   showDetail(todo: Todo) {
