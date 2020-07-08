@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './redux/todos.reducers';
+import { reducer } from './redux/todos/todos.reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'; // Angular CLI environment
 import { reducers } from './redux/index';
 import { MenuComponent } from './components/menu/menu.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { EffectsModule } from '@ngrx/effects';
+import { TodosEffects } from './redux/todos/todos.effects';
 //import { HttpIntercept } from './core/services/http-interceptor.service';
 
 @NgModule({
@@ -25,6 +27,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     AppRoutingModule,
     CoreModule,
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([TodosEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
