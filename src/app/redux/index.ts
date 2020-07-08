@@ -1,6 +1,6 @@
 import { createSelector, ActionReducerMap } from '@ngrx/store';
-import { TodoState,todosReducer } from './todos.reducers';
-import { UserState, authReducer } from './auth.reducers';
+import { TodoState,todosReducer } from './todos/todos.reducers';
+import { UserState, authReducer } from './user/auth.reducers';
 import { User } from '../core/model/user.interface';
 
 
