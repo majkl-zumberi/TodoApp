@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Todo } from '../core/model/todo.interface';
+import { Todo } from '../../core/model/todo.interface';
 import { initTodos, insertTodo, removeTodo, editTodo } from './todos.actions';
 
 
