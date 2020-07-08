@@ -9,22 +9,18 @@ export class TodosServerService {
 
   constructor(private httpCommunications: HttpCommunicationsService) { }
 
-  retrieveAllTodos(): Observable<Todo[]>{
-    return this.httpCommunications.retrieveGetCall<Todo[]>("todos");
-  }
+  // retrieveAllTodos(): Observable<Todo[]>{
+  //   return this.httpCommunications.retrieveGetCall<Todo[]>("todos");
+  // }
 
-  retrieveTodoById(id: number): Observable<Todo>{
-    return this.httpCommunications.retrieveGetCall<Todo>(`todos/${id}`);
-  }
-
-  addNewTodo(todo: Todo): Observable<Todo>{
-    return this.httpCommunications.retrievePostCall(`todos/`, todo);
-  }
-  updateTodo(todo: Todo): Observable<Todo>{
-    return this.httpCommunications.retrievePutCall(`todos/${todo.id}`, todo);
-  }
-  deleteTodo(id:number): Observable<Todo>{
-    return this.httpCommunications.retrieveDeleteCall(`todos/${id}`);
-  }
+  // addNewTodo(todo: Todo): Observable<Todo>{
+  //   return this.httpCommunications.retrievePostCall(`todos/`, todo);
+  // }
+  // updateTodo(todo: Todo): Observable<Todo>{
+  //   return this.httpCommunications.retrievePutCall(`todos/${todo.id}`, todo);
+  // }
+  // deleteTodo(id:number): Observable<Todo>{
+  //   return this.httpCommunications.retrieveDeleteCall(`todos/${id}`);
+  // }
 
 }
