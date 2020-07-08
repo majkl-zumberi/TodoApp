@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { User } from '../core/model/user.interface';
+import { User } from '../../core/model/user.interface';
 import { initUser, insertUser, removeUser, editUser } from './auth.actions';
 
 
