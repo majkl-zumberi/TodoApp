@@ -5,7 +5,7 @@ import { TodosServerService } from 'src/app/core/services/todos-server.service';
 import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { Todo } from 'src/app/core/model/todo.interface';
 import { Store } from '@ngrx/store';
-import { initTodos, editTodo, insertTodo, removeTodo } from 'src/app/redux/todos.actions';
+import { initTodos, editTodo, insertTodo, removeTodo, retreiveAllTodos, updateTodo, insertTodoEff, DeleteTodo } from 'src/app/redux/todos/todos.actions';
 import { User } from 'src/app/core/model/user.interface';
 
 @Injectable()
@@ -22,34 +22,39 @@ export class TodosFacadeService {
   constructor(private todosServerService: TodosServerService, private router: Router,private Store:Store) { }
 
   getAllTodos() {
-    this.todosServerService.retrieveAllTodos().subscribe(todos => {
-      //this.todsSubject.next(todos);
-      this.Store.dispatch(initTodos({todos}))//todos:todos
-    },err=>{
-      console.log("ERROREEEE",err);
-      this.todoErrSubject.next("si è verificato un errore durante il caricamento. riprovare più tardi");
-    });
+    // this.todosServerService.retrieveAllTodos().subscribe(todos => {
+    //   //this.todsSubject.next(todos);
+    //   this.Store.dispatch(initTodos({todos}))//todos:todos
+    // },err=>{
+    //   console.log("ERROREEEE",err);
+    //   this.todoErrSubject.next("si è verificato un errore durante il caricamento. riprovare più tardi");
+    // });
+
+    this.Store.dispatch(retreiveAllTodos());
   }
 
   editTodo(todo: Todo) {
-    this.todosServerService.updateTodo(todo).subscribe((item: Todo) => {
-      this.Store.dispatch(editTodo({todo: item}));
-      this.goToDetail(todo.id);
-    });
+    this.Store.dispatch(updateTodo({todo}));
+    // this.todosServerService.updateTodo(todo).subscribe((item: Todo) => {
+    //   this.Store.dispatch(editTodo({todo: item}));
+    //   this.goToDetail(todo.id);
+    // });
   }
 
   removeTodo(id:number){
-    this.todosServerService.deleteTodo(id).subscribe((item:Todo)=>{
-      this.Store.dispatch(removeTodo({id}));
-      this.goToTodosHome();
-    });
+    this.Store.dispatch(DeleteTodo({id}));
+    // this.todosServerService.deleteTodo(id).subscribe((item:Todo)=>{
+    //   this.Store.dispatch(removeTodo({id}));
+    //   this.goToTodosHome();
+    // });
   }
 
   addNewTodo(newTodo:Todo) {
-    this.todosServerService.addNewTodo(newTodo).subscribe((item: Todo) => {
-      this.Store.dispatch(insertTodo({todo: item}));
-      this.goToTodosHome();
-    });
+    this.Store.dispatch(insertTodoEff({todo:newTodo}));
+    // this.todosServerService.addNewTodo(newTodo).subscribe((item: Todo) => {
+    //   this.Store.dispatch(insertTodo({todo: item}));
+    //   this.goToTodosHome();
+    // });
   }
 
   goToTodosHome() {
