@@ -35,8 +35,9 @@ export class TodoPreviewComponent implements OnInit, OnDestroy{
     ).subscribe(username=>{
       this.toggle=this.todo?.forUser.some(t=>t?.username==username)?true:false??false;
     })
-    let usersSubs=this.userList.find(lista=>lista?.idTodo==this.todo.id).users;
-    usersSubs?this.whoSubscribed=`a questo todo si sono iscritti ${usersSubs.substr(1)}`:this.whoSubscribed='';
+    this.userList=this.userList??[];
+    let usersSubs=((this.userList.find(lista=>lista?.idTodo==this.todo.id)||'').users)??'';
+    this.whoSubscribed=usersSubs?`a questo todo si sono iscritti ${usersSubs.substr(1)}`:'';
   }
   detailClick() {
     this.detailEvent.emit();
