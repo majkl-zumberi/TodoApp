@@ -41,6 +41,6 @@ export class LoginComponent implements OnInit,OnDestroy {
     this.authFacadeService.signIn(this.usernameControl.value,this.passwordControl.value);
   }
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    typeof this.sub !== 'undefined' && (this.sub.unsubscribe());
   }
 }
