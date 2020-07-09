@@ -1,16 +1,21 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Todo } from 'src/app/core/model/todo.interface';
 import { User } from 'src/app/core/model/user.interface';
-
+import { Store, select } from '@ngrx/store';
+import { selectCurrentUser } from 'src/app/redux';
+import { map, filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-todo-preview',
   templateUrl: './todo-preview.component.html',
   styleUrls: ['./todo-preview.component.scss']
 })
-export class TodoPreviewComponent implements OnInit{
+export class TodoPreviewComponent implements OnInit, OnDestroy{
 
   @Input()
   todo: Todo;
+  @Input()
+  userList: any;
 
   @Output()
   detailEvent: EventEmitter<void> = new EventEmitter();
@@ -18,13 +23,20 @@ export class TodoPreviewComponent implements OnInit{
   deleteEvent: EventEmitter<void> = new EventEmitter();
   @Output()
   toggleEvent: EventEmitter<Boolean> = new EventEmitter<Boolean>();
-
+  whoSubscribed:string;
   toggle:boolean=false;
-
-  constructor() { }
-
+  private sub:Subscription;
+  constructor(private store:Store) { }
   ngOnInit(): void {
-    this.toggle=this.todo?.forUser.some(t=>t.username==(JSON.parse(sessionStorage.getItem('utente')) as User)?.username)?true:false??false;
+    console.log(this.userList);
+    this.sub=this.store.pipe(select(selectCurrentUser))
+    .pipe(
+      map((user:User)=>user.username??'')
+    ).subscribe(username=>{
+      this.toggle=this.todo?.forUser.some(t=>t?.username==username)?true:false??false;
+    })
+    let usersSubs=this.userList.find(lista=>lista?.idTodo==this.todo.id).users;
+    usersSubs?this.whoSubscribed=`a questo todo si sono iscritti ${usersSubs.substr(1)}`:this.whoSubscribed='';
   }
   detailClick() {
     this.detailEvent.emit();
@@ -38,5 +50,8 @@ export class TodoPreviewComponent implements OnInit{
     this.toggle=!this.toggle;
     console.log(this.toggle);
     this.toggleEvent.emit(this.toggle);
+  }
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

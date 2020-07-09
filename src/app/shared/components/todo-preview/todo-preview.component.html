@@ -7,7 +7,7 @@
         <p>{{todo?.description}}</p>
         <div class="flex-between">
         <button class="uk-button uk-button-default round" (click)="detailClick()">Dettaglio</button>
-        <a class="uk-button uk-button-default round" (click)="toggleBtn()"><i [ngClass]="toggle?'fas fa-user-minus':'fas fa-user-plus'" ></i></a>
+        <a [attr.uk-tooltip]="whoSubscribed" class="uk-button uk-button-default round" (click)="toggleBtn()"><i [ngClass]="toggle?'fas fa-user-minus':'fas fa-user-plus'" ></i></a>
       </div>
     </div>
 </div>
