@@ -19,16 +19,24 @@ export const selectTodos = createSelector(
  selectTodoState,
   (state: TodoState) => state.todos
 );
-/*export const selectTodosAssigned = createSelector(
- selectTodoState,
-  (state: TodoState, props: { username: string }) => state.todos.filter(todo=>{
+
+export const selectCurrentUser=createSelector(
+  selectUserState,
+  (UserState:UserState)=>UserState.user
+);
+
+export const usersListOfTodo=createSelector(
+  selectTodoState,
+  (Todsstate: TodoState)=>{
+   return Todsstate.todos.map(todo=>{
+      return {
+          idTodo:todo.id,
+          users:todo.forUser.reduce((acc,curr)=>acc+","+curr.username,'' )
+        }
+      })
+  })
 
 
-    let sessionUser=JSON.parse(sessionStorage.getItem("utente")) as User;
-    return todo.forUser.some(t=>t.username==sessionUser?.username);
-
-    })
-);*/
 export const selectTodosAssigned = createSelector(
   selectTodoState,
   selectUserState,
