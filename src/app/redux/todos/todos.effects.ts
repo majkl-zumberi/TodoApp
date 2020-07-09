@@ -50,7 +50,8 @@ export class TodosEffects{
      tap(action=>console.log(action)),
      switchMap(action=>this.http.retrieveDeleteCall<Todo>(`todos/${action.id}`)
 
-     .pipe(map(()=>removeTodo({ id:action.id})))),
-   ));
+     .pipe(
+      switchMap(()=>[removeTodo({ id:action.id}),goToHome()])
+   ))));
 
 }
