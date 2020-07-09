@@ -12,4 +12,7 @@ export class AuthServerService {
   retrieveAllUsers(): Observable<User[]>{
     return this.httpCommunications.retrieveGetCall<User[]>("users");
   }
+  registerUser(user:User):Observable<User>{
+    return this.httpCommunications.retrievePostCall<User>("users",user);
+  }
 }
