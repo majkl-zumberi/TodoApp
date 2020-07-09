@@ -18,7 +18,7 @@
               </div>
             </ng-container>
             <section>
-              <app-todo-preview *ngFor="let todo of todosList | async" [todo]="todo" (detailEvent)="showDetail(todo)"
+              <app-todo-preview *ngFor="let todo of todosList | async" [todo]="todo" [userList]='userList | async' (detailEvent)="showDetail(todo)"
                 (deleteEvent)="removeTodo(todo)" (toggleEvent)="assignToUser($event,todo)"></app-todo-preview>
             </section>
             <section>
