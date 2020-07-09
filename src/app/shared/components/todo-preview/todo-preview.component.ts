@@ -31,7 +31,7 @@ export class TodoPreviewComponent implements OnInit, OnDestroy{
     console.log(this.userList);
     this.sub=this.store.pipe(select(selectCurrentUser))
     .pipe(
-      map((user:User)=>user.username??'')
+      map((user:User)=>(user?.username)??'')
     ).subscribe(username=>{
       this.toggle=this.todo?.forUser.some(t=>t?.username==username)?true:false??false;
     })
