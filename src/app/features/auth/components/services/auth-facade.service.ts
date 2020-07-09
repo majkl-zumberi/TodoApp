@@ -38,4 +38,18 @@ export class AuthFacadeService {
     this.Store.dispatch(removeUser({}));
     this.router.navigateByUrl("/auth/login");
   }
+
+  signUp(username:string,password:string){
+    this.authServer.registerUser({username,password,name:'',surname:''}as User)
+    .pipe(
+      map((user:User)=>{
+        return {username:user.username,name:user.name}
+      })
+    )
+    .subscribe((user:User)=>{
+      this.Store.dispatch(initUser({user}));
+      sessionStorage.setItem("utente",JSON.stringify(user));
+      this.router.navigateByUrl("/home");
+    });
+    }
 }
