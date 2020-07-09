@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
         console.log(event.url);
         this.currentRoute=event.url;
 
-        if(this.currentRoute!=="/auth/login"){
+        if(this.currentRoute!=="/auth/login" && this.currentRoute!=="/auth/register"){
           let user=JSON.parse(sessionStorage.getItem('utente'))as User;
           this.username=user.username;
         }
