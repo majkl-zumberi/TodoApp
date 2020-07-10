@@ -31,7 +31,7 @@ export const usersListOfTodo=createSelector(
    return Todsstate.todos.map(todo=>{
       return {
           idTodo:todo.id,
-          users:todo.forUser.reduce((acc,curr)=>acc+","+curr.username,'' )
+          users:todo.forUser.reduce((acc,curr,idx)=>idx==0?curr.username:`${acc},${curr.username}`,'' )
         }
       })
   })
