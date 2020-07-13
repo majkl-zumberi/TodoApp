@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule), canLoad:[CanLoadCompsGuard]},
   { path: 'auth', loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule), canLoad:[CanloadloginGuard] },
   { path: 'shared-with-me', loadChildren: () => import('./features/tods-shared/tods-shared.module').then(m => m.TodsSharedModule), canLoad:[CanLoadCompsGuard] },
+  { path: 'profile', loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule) },
   {path:'**',component: PageNotFoundComponent},
 ];
 
