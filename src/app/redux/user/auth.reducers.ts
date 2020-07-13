@@ -17,7 +17,7 @@ export const authReducer = createReducer(
     on(initUser, (state,{user}) => ({ ...state, user:user })),
     //on(insertTodo,(state,{todo}) => ({ ...state,todos:[...state.todos,todo] })),
     on(removeUser,(state) => ({ ...state, user:null })),
-    //on(editTodo,(state,{todo}) => ({ ...state,todos:state.todos.map(item=>item.id===todo.id?todo:item) }))
+    on(editUser,(state,{user}) => ({ ...state,user:user }))
   );
 
   export function reducer(state: UserState | undefined, action: Action) {
