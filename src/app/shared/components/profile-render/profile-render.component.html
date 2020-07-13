@@ -1,0 +1,7 @@
+<a *ngIf="!iniziali; else hasIniziali">{{username}}</a>
+<ng-template #hasIniziali>
+  <a>
+    <img class="uk-border-circle" [src]="'https://via.placeholder.com/100C/1e87f0/ffffff?text='+iniziali" width="50"
+      height="50" [alt]="iniziali">
+  </a>
+</ng-template>
