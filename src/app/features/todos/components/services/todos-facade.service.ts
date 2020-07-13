@@ -32,6 +32,9 @@ export class TodosFacadeService {
   goToTodosHome() {
     this.router.navigateByUrl('/todos');
   }
+  goToHome() {
+    this.router.navigateByUrl('/home');
+  }
 
   goToDetail(id: number) {
     this.router.navigateByUrl('/todos/detail/' + id);

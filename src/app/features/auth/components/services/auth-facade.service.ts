@@ -26,8 +26,8 @@ export class AuthFacadeService {
       if(typeof user === 'undefined'){
         this.errMessageSource.next("utente non trovato")
       }else{
-        this.Store.dispatch(initUser({user:{username:user.username,name:user.name}as User})),
-        sessionStorage.setItem("utente", JSON.stringify({username:user.username,name:user.name})),
+        this.Store.dispatch(initUser({user:{username:user.username,name:user.name,surname:user.surname,id:user.id}as User})),
+        sessionStorage.setItem("utente", JSON.stringify({username:user.username,name:user.name,surname:user.surname,id:user.id})),
         this.router.navigateByUrl("/home");
       }
     })
@@ -43,7 +43,7 @@ export class AuthFacadeService {
     this.authServer.registerUser({username,password,name:'',surname:''}as User)
     .pipe(
       map((user:User)=>{
-        return {username:user.username,name:user.name}
+        return {username:user.username,name:user.name,id:user.id}
       })
     )
     .subscribe((user:User)=>{
