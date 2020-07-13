@@ -3,6 +3,8 @@ import { Router, NavigationEnd ,Event } from '@angular/router';
 import { AuthFacadeService } from 'src/app/features/auth/components/services/auth-facade.service';
 import { Session } from 'protractor';
 import { User } from 'src/app/core/model/user.interface';
+import { Store, select } from '@ngrx/store';
+import { selectCurrentUser } from 'src/app/redux';
 
 @Component({
   selector: 'app-menu',
@@ -11,6 +13,7 @@ import { User } from 'src/app/core/model/user.interface';
 })
 export class MenuComponent implements OnInit {
   username:string;
+  iniziali:string;
   currentRoute:string;
   constructor(private router:Router,private fs:AuthFacadeService) { }
 
@@ -20,11 +23,6 @@ export class MenuComponent implements OnInit {
       if(event instanceof NavigationEnd) {
         console.log(event.url);
         this.currentRoute=event.url;
-
-        if(this.currentRoute!=="/auth/login" && this.currentRoute!=="/auth/register"){
-          let user=JSON.parse(sessionStorage.getItem('utente'))as User;
-          this.username=user.username;
-        }
       }
       // NavigationEnd
       // NavigationCancel
