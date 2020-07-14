@@ -3,9 +3,8 @@ import { User } from 'src/app/core/model/user.interface';
 import { Router } from '@angular/router';
 import { AuthServerService } from 'src/app/core/services/auth-server.service';
 import { Store } from '@ngrx/store';
-import { initUser, removeUser, loginUser } from 'src/app/redux/user/auth.actions';
+import { initUser, removeUser, loginUser, signUpUser } from 'src/app/redux/user/auth.actions';
 import { Subject } from 'rxjs';
-import { find, filter, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +40,7 @@ export class AuthFacadeService {
   }
 
   signUp(username:string,password:string){
-    this.authServer.registerUser({username,password,name:'',surname:''}as User)
+   /* this.authServer.registerUser({username,password,name:'',surname:''}as User)
     .pipe(
       map((user:User)=>{
         return {username:user.username,name:user.name,id:user.id}
@@ -51,6 +50,7 @@ export class AuthFacadeService {
       this.Store.dispatch(initUser({user}));
       sessionStorage.setItem("utente",JSON.stringify(user));
       this.router.navigateByUrl("/home");
-    });
+    });*/
+    this.Store.dispatch(signUpUser({username,password}));
     }
 }
