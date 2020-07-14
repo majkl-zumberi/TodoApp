@@ -11,7 +11,7 @@ export class CanloadloginGuard implements CanLoad {
     route: Route,
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
     if(sessionStorage.getItem("utente")!=null){
-      this.router.navigateByUrl("/homepage/home");
+      this.router.navigateByUrl("/home");
       return false;
       }
       return true;
