@@ -41,11 +41,7 @@ export class LoginComponent implements OnInit,OnDestroy {
   loginUser(){
     console.log("username:"+this.usernameControl.value);
     console.log("password:"+this.passwordControl.value);
-    //this.authFacadeService.signIn(this.usernameControl.value,this.passwordControl.value);
-   /* this.sub=this.authFacadeService.errMessage$.subscribe(message=>{
-      this.loginError=message;
-      console.log(message);
-    });*/
+
     this.authFacadeService.signIn(this.usernameControl.value,this.passwordControl.value);
   }
   ngOnDestroy(): void {
