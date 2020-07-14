@@ -3,7 +3,7 @@ import { User } from 'src/app/core/model/user.interface';
 import { Router } from '@angular/router';
 import { AuthServerService } from 'src/app/core/services/auth-server.service';
 import { Store } from '@ngrx/store';
-import { initUser, removeUser } from 'src/app/redux/user/auth.actions';
+import { initUser, removeUser, loginUser } from 'src/app/redux/user/auth.actions';
 import { Subject } from 'rxjs';
 import { find, filter, map } from 'rxjs/operators';
 
@@ -17,7 +17,7 @@ export class AuthFacadeService {
   constructor(private router:Router,private authServer:AuthServerService,private Store:Store) { }
 
   signIn(username:string, password:string){
-    this.authServer.retrieveAllUsers()
+    /*this.authServer.retrieveAllUsers()
     .pipe(
      map(users=>
       users.find(actualUser=>actualUser.username === username && actualUser.password === password))
@@ -30,7 +30,8 @@ export class AuthFacadeService {
         sessionStorage.setItem("utente", JSON.stringify({username:user.username,name:user.name,surname:user.surname,id:user.id})),
         this.router.navigateByUrl("/home");
       }
-    })
+    })*/
+    this.Store.dispatch(loginUser({username,password}));
   }
 
   signOut(){
