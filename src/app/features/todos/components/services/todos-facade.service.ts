@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Subject} from 'rxjs';
 import { Todo } from 'src/app/core/model/todo.interface';
 import { Store } from '@ngrx/store';
-import { retreiveAllTodos, updateTodo, insertTodoEff, DeleteTodo } from 'src/app/redux/todos/todos.actions';
+import { retreiveAllTodos, updateTodo, insertTodoEff, DeleteTodo, assignUser, dismissUser } from 'src/app/redux/todos/todos.actions';
 import { User } from 'src/app/core/model/user.interface';
 
 @Injectable()
@@ -45,21 +45,23 @@ export class TodosFacadeService {
   }
   assignTodo(todo: Todo,remOrAdd:boolean){
     if(remOrAdd){
-      let SessionUser=JSON.parse(sessionStorage.getItem('utente')) as User;
+      /*let SessionUser=JSON.parse(sessionStorage.getItem('utente')) as User;
 
       let userAssigned={
         username:SessionUser.username
       };
 
       let assignedTodo={...todo,forUser:[...todo.forUser,userAssigned]};
-      this.editTodo(assignedTodo);
+      this.editTodo(assignedTodo);*/
+      this.Store.dispatch(assignUser({todo}));
     }else{
-      let SessionUser=JSON.parse(sessionStorage.getItem('utente')) as User;
+      /*let SessionUser=JSON.parse(sessionStorage.getItem('utente')) as User;
 
       let removeAssigned={...todo};
       removeAssigned.forUser=removeAssigned.forUser.filter(utente=>utente.username!==SessionUser?.username);
       console.log("rimosso l'utente ",removeAssigned);
-      this.editTodo(removeAssigned);
+      this.editTodo(removeAssigned);*/
+      this.Store.dispatch(dismissUser({todo}));
     }
   }
 }
