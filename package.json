@@ -8,6 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "api":"json-server db.json --watch",
     "dev": "concurrently --kill-others \"npm run start\" \"json-server db.json --watch \""
   },
   "private": true,
