@@ -43,7 +43,7 @@ export class authEffects{
     ofType(authActions.loginUser),
     switchMap(action=>this.retreiveAllUsers().pipe(
       switchMap(users=>of(this.checkUserAccount(action.username,action.password,users)).pipe(
-        switchMap(async user=>{
+        map( user=>{
           if(typeof user === 'undefined'){
             return authActions.loginUserFailure({error:'username e/o password non corretta'})
           }else{
@@ -60,7 +60,7 @@ export class authEffects{
       console.log('salvo utente in sessione da auth.effects');
       sessionStorage.setItem("utente", JSON.stringify({username:action.user.username,name:action.user.name,surname:action.user.surname,id:action.user.id}))
     }),
-    switchMap(async (action) => authActions.initUser({ user: action.user })),
+    map( (action) => authActions.initUser({ user: action.user })),
     tap(()=>this.router.navigateByUrl('/home'))
   ));
 
@@ -68,7 +68,7 @@ export class authEffects{
     ofType(authActions.signUpUser),
     switchMap(action=>this.registerUser(action.username,action.password).pipe(
       switchMap(user=>of(this.formatUser(user)).pipe(
-        switchMap(async (formattedUser) => authActions.signUpUserSuccess({ user: formattedUser }))
+        map( (formattedUser) => authActions.signUpUserSuccess({ user: formattedUser }))
       ))
     ))
   ));
@@ -76,7 +76,7 @@ export class authEffects{
   signUpUserSuccess$=createEffect(()=>this.action$.pipe(
     ofType(authActions.signUpUserSuccess),
     tap((action)=>console.log('utente,registrato adesso devo registrarlo nella sessione e reindirizzarlo',action)),
-    switchMap(async (action) => authActions.initUser({ user:action.user })),
+    map( (action) => authActions.initUser({ user:action.user })),
     tap((action)=>{
       console.log('salvo in sessione l\'utente appena registrato');
       sessionStorage.setItem("utente",JSON.stringify(action.user));
