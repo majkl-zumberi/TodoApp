@@ -2,17 +2,18 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { HttpCommunicationsService } from '../../core/http-communications/http-communications.service';
 import { Observable } from 'rxjs';
-import { Action } from '@ngrx/store';
-import { initTodos, retreiveAllTodos, updateTodo, editTodo, insertTodoEff, insertTodo, DeleteTodo, removeTodo } from './todos.actions';
-import { switchMap, map, tap, concatMap, mergeMap } from 'rxjs/operators';
+import { Action, Store, select } from '@ngrx/store';
+import { initTodos, retreiveAllTodos, updateTodo, editTodo, insertTodoEff, insertTodo, DeleteTodo, removeTodo, assignUser, dismissUser } from './todos.actions';
+import { switchMap, map, tap, concatMap, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Todo } from '../../core/model/todo.interface';
 import { goToDetail, goToHome } from '../../features/todos/components/redux/todos.navigations.actions';
+import { selectCurrentUser } from '..';
 
 
 @Injectable()
 export class TodosEffects{
 
-  constructor(private action$:Actions, private http:HttpCommunicationsService){}
+  constructor(private action$:Actions, private http:HttpCommunicationsService,private store:Store){}
 
   retreiveAllTodos$:Observable<Action>=createEffect(()=>this.action$.pipe(
     //filtro l'azione se è di tipo retreiveAllTodos allora va nello switchMap
@@ -54,4 +55,25 @@ export class TodosEffects{
       switchMap(()=>[removeTodo({ id:action.id}),goToHome()])
    ))));
 
+   assignUser$=createEffect(()=>this.action$.pipe(
+     ofType(assignUser),
+     withLatestFrom(this.store.pipe(select(selectCurrentUser))),
+     map(([action,user])=>{
+      return {...action.todo,forUser:[...action.todo.forUser,{username:user.username}]}
+       }),
+     map((todo:Todo)=>updateTodo({ todo }))
+   ));
+
+   dismissUser$=createEffect(()=>this.action$.pipe(
+     ofType(dismissUser),
+     withLatestFrom(this.store.pipe(select(selectCurrentUser))),
+     map(([action,user])=>{
+      let removeAssigned={...action.todo};
+       return {
+        ...removeAssigned,
+        forUser:removeAssigned.forUser.filter(utente=>utente.username!==user?.username)
+       }
+       }),
+     map((todo:Todo)=>updateTodo({ todo }))
+   ))
 }

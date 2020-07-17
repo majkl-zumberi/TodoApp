@@ -10,3 +10,7 @@ export const retreiveAllTodos     =createAction('[Todos] effect - get all');
 export const updateTodo           =createAction('[Todos] effect - update',props<{todo:Todo}>());
 export const insertTodoEff        =createAction('[Todos] effect - insert',props<{todo:Todo}>());
 export const DeleteTodo           =createAction('[Todos] effect - remove',props<{id:number}>());
+
+//assign todo
+export const assignUser=createAction('[User] assign-user',  props<{todo:Todo}>());
+export const dismissUser=createAction('[User] dismiss-user',  props<{todo:Todo}>());
