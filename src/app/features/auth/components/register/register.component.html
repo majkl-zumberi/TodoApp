@@ -9,9 +9,17 @@
 							<div class="uk-margin">
 								<div class="uk-inline uk-width-1-1">
 									<span class="uk-form-icon" uk-icon="icon: user"></span>
-									<input class="uk-input uk-form-large" type="text" formControlName="username" placeholder="username">
+                  <input class="uk-input uk-form-large" type="text" formControlName="username" placeholder="username"
+                  [ngClass]="{'uk-form-danger':registerForm.get('username').errors &&
+                      ((registerForm.get('username').touched ||
+                       registerForm.get('username').dirty) &&
+                       !registerForm.get('username').pristine)}"
+                  >
 								</div>
               </div>
+              <div class="uk-alert-danger" uk-alert *ngIf="registerForm.get('username').errors?.userNameExists">
+                <p>username già in uso</p>
+            </div>
               <div formGroupName="pswGroup">
                   <div class="uk-margin">
                     <div class="uk-inline uk-width-1-1">
@@ -37,7 +45,10 @@
 
 							<div class="uk-margin">
 								<button class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="submit"
-                [disabled]="registerForm.status === 'INVALID'">Registrati</button>
+                [disabled]="registerForm.status === 'INVALID' || registerForm.pending">
+                Registrati
+                <span *ngIf="registerForm.get('username').pending"> (searching)<div uk-spinner></div></span>
+              </button>
 							</div>
 							<div class="uk-text-small uk-text-center">
 								già registrato? <a type="button" routerLink="/auth/login">effettua il login</a>
