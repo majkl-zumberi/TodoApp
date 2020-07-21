@@ -10,12 +10,8 @@ import {
   AbstractControl
 } from '@angular/forms';
 import {
-  Subscription
-} from 'rxjs';
-import {
   AuthFacadeService
 } from '../services/auth-facade.service';
-import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
