@@ -39,7 +39,7 @@ export class TodosEffects{
      ofType(insertTodoEff),
      //dopo il dispatch
      switchMap((action)=> this.http.retrievePostCall<Todo>(`todos/`, action.todo).pipe(
-      switchMap(todo=>[insertTodo({ todo }),goToHome()])//restituisce 2 oggetti observable eseguendone una per uno
+      switchMap(todo=>[insertTodo({ todo }),assignUser({todo}),goToHome()])//restituisce 2 oggetti observable eseguendone una per uno
      ))
 
    ));
