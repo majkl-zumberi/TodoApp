@@ -12,8 +12,15 @@
               </div>
             </ng-container>
             <section>
-              <app-todo-preview *ngFor="let todo of todosList | async" [todo]="todo" (detailEvent)="showDetail(todo)"
-                (deleteEvent)="removeTodo(todo)" (toggleEvent)="assignToUser($event,todo)"></app-todo-preview>
+              <ng-container *ngIf="(todosList| async)?.length > 0; else noData">
+                <app-todo-preview *ngFor="let todo of todosList | async" [todo]="todo" (detailEvent)="showDetail(todo)"
+                  (deleteEvent)="removeTodo(todo)" (toggleEvent)="assignToUser($event,todo)"></app-todo-preview>
+              </ng-container>
+              <ng-template #noData>
+                <div class="uk-alert-primary" uk-alert>
+                  <p>non hai ancora seguito nessun Todo</p>
+                </div>
+              </ng-template>
             </section>
             <section>
               <router-outlet></router-outlet>
