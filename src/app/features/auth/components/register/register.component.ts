@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private authFacadeService: AuthFacadeService) {
     this.registerForm = this.fb.group({
-      username: ['', Validators.required],
+      username: ['', Validators.required,this.authFacadeService.userValidator()],
       pswGroup: this.fb.group({
         password: ['', Validators.required],
         passwordCnf: ['', Validators.required],
