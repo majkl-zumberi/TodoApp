@@ -17,6 +17,7 @@ import { TodosEffects } from './redux/todos/todos.effects';
 import { MenuComponent } from './components/menu/menu.component';
 import { ProfileRenderComponent } from './shared/components/profile-render/profile-render.component';
 import { authEffects } from './redux/user/auth.effects';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 //import { HttpIntercept } from './core/services/http-interceptor.service';
 
 @NgModule({
@@ -35,7 +36,8 @@ import { authEffects } from './redux/user/auth.effects';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
-    })
+    }),
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [
     //{ provide: ErrorHandler, useClass: SentryErrorHandler },
