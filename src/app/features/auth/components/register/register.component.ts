@@ -18,7 +18,7 @@ import {
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   passwordMessage: string;
   registerForm: FormGroup;
@@ -58,9 +58,5 @@ export class RegisterComponent implements OnInit {
   }
 
 
-
-  ngOnInit(): void {
-
-  }
 
 }
