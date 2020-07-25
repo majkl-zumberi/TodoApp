@@ -5,7 +5,7 @@ import { InputTextComponent } from './components/input-text/input-text.component
 import { TodoPreviewComponent } from './components/todo-preview/todo-preview.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
-
+import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
 @NgModule({
   declarations: [
     InputTextComponent,
@@ -16,7 +16,8 @@ import { TodoFormComponent } from './components/todo-form/todo-form.component';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MultiSelectAllModule
   ],
   exports: [
     CommonModule,
@@ -25,7 +26,8 @@ import { TodoFormComponent } from './components/todo-form/todo-form.component';
     InputTextComponent,
     TodoPreviewComponent,
     TodoItemComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    MultiSelectAllModule
   ]
 })
 export class SharedModule { }
