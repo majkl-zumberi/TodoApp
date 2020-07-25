@@ -16,3 +16,6 @@ export const signUpUser=createAction('[Auth] signUp',  props<{username:string, p
 export const signUpUserSuccess=createAction('[Auth] signUp Success', props<{user:User}>());
 //update user profile
 export const updateUser=createAction('[User] Effect: edit',  props<{user:User}>());
+
+export const usersUsername=createAction('[User] save usernames into store',props<{usernames:string[]}>());
+export const usersUsernameEffect=createAction('[User] get usernames from all users');
