@@ -34,9 +34,11 @@ export class authEffects{
   registerUser(username:string,password:string):Observable<User>{
    return this.http.retrievePostCall<User>("users",{username,password,name:'',surname:''})
   }
-
+  getAllUsers():Observable<User[]>{
+    return this.http.retrieveGetCall<User[]>('users');
+  }
   formatUser(user:User):User{
-      return {username:user.username,name:user.name,id:user.id} as User;
+      return {username:user.username,name:user.name,id:user.id,admin:false} as User;
   }
 
   loginUser$=createEffect(()=>this.action$.pipe(
@@ -82,6 +84,16 @@ export class authEffects{
       sessionStorage.setItem("utente",JSON.stringify(action.user));
       this.router.navigateByUrl('/home');
     })
+  ))
+
+  usersUsernameEffect$=createEffect(()=>this.action$.pipe(
+    ofType(authActions.usersUsernameEffect),
+    switchMap(()=>this.getAllUsers().pipe(
+      switchMap((users:User[])=>of(users.map((user:User)=>user.username)).pipe(
+        map((usersUsernames:string[])=>authActions.usersUsername({usernames:usersUsernames}))
+      ))
+    )),
+
   ))
 }
 
