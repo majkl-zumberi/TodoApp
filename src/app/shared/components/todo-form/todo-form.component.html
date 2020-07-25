@@ -1,6 +1,8 @@
 <form [formGroup]="todoForm" (ngSubmit)="confirmChanges()">
   <app-input-text formControlName="title" [label]="'Titolo'"></app-input-text>
   <app-input-text formControlName="description" [label]="'Descrizione'"></app-input-text>
+  <ejs-multiselect *ngIf="showForUserInput" id='localData' formControlName="forUser" [dataSource]='usersUsername' [fields]='localfields' [placeholder]='localWaterMark' [value]='value' ></ejs-multiselect>
+  <hr>
   <div formArrayName="steps">
     <ng-container *ngIf="stepsArray.length > 0">
       <div *ngFor="let step of stepsArray; let indice=index" [formGroupName]="indice">
