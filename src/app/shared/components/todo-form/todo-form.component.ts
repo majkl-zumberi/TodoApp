@@ -14,6 +14,21 @@ export class TodoFormComponent implements OnChanges {
   @Input()
   todo: Todo;
 
+  @Input()
+  usersUsername:{[key:string]:Object}[];
+
+  @Input()
+  localfields:Object={text:'Name',value:'username'};
+
+  @Input()
+  localWaterMark:string;
+
+  @Input()
+  value:string[];
+
+  @Input()
+  showForUserInput:boolean;
+
   @Output()
   formSubmitEvent: EventEmitter<Todo> = new EventEmitter<Todo>();
 
@@ -32,14 +47,16 @@ export class TodoFormComponent implements OnChanges {
       id: null,
       title: ['', Validators.required],
       description: ['', Validators.required],
+      forUser:[[''],Validators.required],
       steps: this.fb.array([]),
-      forUser: this.fb.array([])
     });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
     if (changes && changes['todo'] && this.todo != null) {
+      console.log("eccolih."+this.todo.forUser.map(user=>user.username));
+
       this.stepsArray = [...this.todo.steps];
       this.stepsControl.clear();
       this.stepsArray.forEach(step => {
@@ -54,7 +71,6 @@ export class TodoFormComponent implements OnChanges {
         id: this.todo.id,
         title: this.todo.title,
         description: this.todo.description,
-        forUser:this.todo.forUser
       })
     }
   }
@@ -82,8 +98,8 @@ export class TodoFormComponent implements OnChanges {
 
   confirmChanges() {
     console.log(this.todoForm.value);
-
-    let todoWithForUser={...this.todoForm.value,forUser:[...this.todo.forUser]} as Todo;
+    let newUsersAdded=this.todoForm.get('forUser').value.map(user=>({username:user}));
+    let todoWithForUser=this.showForUserInput?{...this.todoForm.value,forUser:[...newUsersAdded]} as Todo:{...this.todoForm.value,forUser:[...this.todo.forUser]} as Todo ;
 
     this.formSubmitEvent.emit(todoWithForUser);
   }
