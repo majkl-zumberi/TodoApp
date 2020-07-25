@@ -4,4 +4,5 @@ export interface User {
     surname: string;
     password:string;
     username:string;
+    admin:boolean;
 }
