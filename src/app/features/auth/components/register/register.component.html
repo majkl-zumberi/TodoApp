@@ -9,7 +9,7 @@
 							<div class="uk-margin">
 								<div class="uk-inline uk-width-1-1">
 									<span class="uk-form-icon" uk-icon="icon: user"></span>
-                  <input class="uk-input uk-form-large" type="text" formControlName="username" placeholder="username"
+                  <input class="uk-input uk-form-large username-input" type="text" formControlName="username" placeholder="username"
                   [ngClass]="{'uk-form-danger':registerForm.get('username').errors &&
                       ((registerForm.get('username').touched ||
                        registerForm.get('username').dirty) &&
@@ -24,7 +24,7 @@
                   <div class="uk-margin">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                      <input class="uk-input uk-form-large" type="password" formControlName="password" placeholder="password">
+                      <input class="uk-input uk-form-large password-input" type="password" formControlName="password" placeholder="password">
                     </div>
                   </div>
                   <div class="uk-margin">
@@ -33,7 +33,7 @@
                       <input [ngClass]="{'uk-form-danger':registerForm.get('pswGroup').errors ||
                       ((registerForm.get('pswGroup.passwordCnf').touched ||
                        registerForm.get('pswGroup.passwordCnf').dirty) &&
-                       !registerForm.get('pswGroup.passwordCnf').valid)}" class="uk-input uk-form-large" type="password" placeholder="conferma password" formControlName="passwordCnf">
+                       !registerForm.get('pswGroup.passwordCnf').valid)}" class="uk-input uk-form-large passwordCnf-input" type="password" placeholder="conferma password" formControlName="passwordCnf">
 
                     </div>
                   </div>
