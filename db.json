@@ -5,7 +5,23 @@
       "username": "majjey",
       "name": "majkl",
       "surname": "zumberi",
-      "password": "123"
+      "password": "123",
+      "admin": true
+    },
+    {
+      "id": 1,
+      "username": "carlo",
+      "name": "test",
+      "surname": "test",
+      "password": "123",
+      "admin": false
+    },
+    {
+      "username": "franco",
+      "password": "123",
+      "name": "",
+      "surname": "",
+      "id": 2
     }
   ],
   "todos": [
@@ -13,6 +29,11 @@
       "id": 0,
       "title": "Ripasso angular",
       "description": "ripasso dei modules| corso Angular avanzato",
+      "forUser": [
+        {
+          "username": "carlo"
+        }
+      ],
       "steps": [
         {
           "id": 0,
@@ -34,13 +55,20 @@
           "done": true,
           "title": "Pratica"
         }
-      ],
-      "forUser": []
+      ]
     },
     {
       "id": 1,
       "title": "ripasso java",
       "description": "riguardare i progetti fatti con hibernate",
+      "forUser": [
+        {
+          "username": "marco"
+        },
+        {
+          "username": "majjey"
+        }
+      ],
       "steps": [
         {
           "id": 0,
@@ -64,16 +92,8 @@
         },
         {
           "id": 4,
-          "done": false,
+          "done": true,
           "title": "riguardare i Beans di spring"
-        }
-      ],
-      "forUser": [
-        {
-          "username": "marco"
-        },
-        {
-          "username": "majjey"
         }
       ]
     }
