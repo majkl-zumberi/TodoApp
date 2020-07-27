@@ -45,13 +45,10 @@
 
 							<div class="uk-margin">
 								<button class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="submit"
-                [disabled]="registerForm.status === 'INVALID' || registerForm.pending">
-                Registrati
-                <span *ngIf="registerForm.get('username').pending"> (searching)<div uk-spinner></div></span>
+                [disabled]="registerForm.status === 'INVALID' || registerForm.pending">Registrati<span *ngIf="registerForm.get('username').pending"> (searching)<div uk-spinner></div></span>
               </button>
 							</div>
-							<div class="uk-text-small uk-text-center">
-								già registrato? <a type="button" routerLink="/auth/login">effettua il login</a>
+							<div class="uk-text-small uk-text-center">già registrato? <a type="button" routerLink="/auth/login">effettua il login</a>
 							</div>
 						</form>
 					</div>
