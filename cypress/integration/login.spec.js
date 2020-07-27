@@ -1,4 +1,3 @@
-/// <reference types="cypress"/>
 context('login', () => {
   beforeEach(() => {
     sessionStorage.removeItem('utente');
@@ -6,6 +5,7 @@ context('login', () => {
   })
 
   it('submit login',()=>{
+    cy.url().should('eq','http://localhost:4200/auth/login')
     cy.get('.username-input').type('majjey').should('have.value','majjey');
     cy.get('.password-input').type('123').should('have.value','123');
     cy.server();
@@ -15,9 +15,13 @@ context('login', () => {
     //cy.get('.welcome-title').should('have.text','MyTodosApp');
     cy.wait('@LoginCall').then(()=>{
       cy.get('.welcome-title').should('have.text','MyTodosApp');
+      cy.contains('MyTodosApp')
+      cy.url().should('eq','http://localhost:4200/home')
+      // cy.url().should('include','home')
     });
   });
   it('submit error login', () => {
+    cy.url().should('eq','http://localhost:4200/auth/login')
     cy.get('.username-input').type('non esiste').should('have.value','non esiste');
     cy.get('.password-input').type('1234').should('have.value','1234');
     cy.server();
