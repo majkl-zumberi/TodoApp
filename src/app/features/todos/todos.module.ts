@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { TodosFacadeService } from './components/services/todos-facade.service';
 import { EffectsModule } from '@ngrx/effects';
 import { TodoNavigationsEffects } from './components/redux/todos.navigations.effects';
+import {CalendarModule, DatePickerModule} from '@syncfusion/ej2-angular-calendars';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { TodoNavigationsEffects } from './components/redux/todos.navigations.eff
     CommonModule,
     TodosRoutingModule,
     SharedModule,
-    EffectsModule.forFeature([TodoNavigationsEffects])
+    CalendarModule,
+    EffectsModule.forFeature([TodoNavigationsEffects]),
+    DatePickerModule
   ]
 })
 export class TodosModule { }
