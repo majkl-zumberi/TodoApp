@@ -7,4 +7,8 @@ export interface Todo {
     description: string;
     steps: TodoStep[];
     forUser:forUser[];
+    StartDate?: Date;
+    EndDate?: Date;
+
+
 }
