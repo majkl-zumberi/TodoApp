@@ -60,7 +60,7 @@ export class authEffects{
     ofType(authActions.loginUserSuccess),
     tap(action=>{
       console.log('salvo utente in sessione da auth.effects');
-      sessionStorage.setItem("utente", JSON.stringify({username:action.user.username,name:action.user.name,surname:action.user.surname,id:action.user.id}))
+      sessionStorage.setItem("utente", JSON.stringify({username:action.user.username,name:action.user.name,surname:action.user.surname,id:action.user.id,admin:action.user.admin}))
     }),
     map( (action) => authActions.initUser({ user: action.user })),
     tap(()=>this.router.navigateByUrl('/home'))
