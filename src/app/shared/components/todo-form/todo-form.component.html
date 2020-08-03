@@ -21,6 +21,12 @@
         </div>
         <div class="flexy">
           <app-input-text formControlName="title" [label]="'Titolo Step'"></app-input-text>
+          <ejs-numerictextbox required formControlName="Duration" [value]="step.Duration" placeholder= 'Durata Step(gg)' floatLabelType= 'Always'></ejs-numerictextbox>
+
+        </div>
+        <label for="start-date">data inizio</label>
+        <div class="flexy">
+          <ejs-datepicker id="start-date"formControlName="StartDate" [value]="todo.StartDate" placeholder="data di inizio"></ejs-datepicker>
           <a class="remove-step" (click)="remStepToForm(indice)">&#215;</a>
         </div>
         <hr>
@@ -30,6 +36,6 @@
   <div class="flexy">
     <button class="uk-button uk-button-danger" (click)="addStepToForm()" type="button">Aggiungi Step</button>
     <button class="uk-button uk-button-danger" (click)="cancel()">Annulla</button>
-    <button class="uk-button uk-button-danger" type="submit" [disabled]="todoForm.invalid">Conferma</button>
+    <button class="uk-button uk-button-danger" type="submit" [disabled]="todoForm.invalid ">Conferma</button>
   </div>
 </form>

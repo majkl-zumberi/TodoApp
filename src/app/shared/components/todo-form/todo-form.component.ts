@@ -2,7 +2,7 @@ import { TodoStep } from './../../../core/model/todo-step.interface';
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Todo } from 'src/app/core/model/todo.interface';
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-todo-form',
@@ -49,6 +49,8 @@ export class TodoFormComponent implements OnChanges {
       description: ['', Validators.required],
       forUser:[[''],Validators.required],
       steps: this.fb.array([]),
+      StartDate:'',
+      EndDate:''
     });
   }
 
@@ -63,14 +65,18 @@ export class TodoFormComponent implements OnChanges {
         this.stepsControl.push(this.fb.group({
           id: step.id,
           done: step.done,
-          title: [step.title, Validators.required]
+          title: [step.title, Validators.required],
+          Duration:[step.Duration,[Validators.required,Validators.min(0)]],
+          StartDate:[moment(step.StartDate).toDate()]
         }));
       });
-      console.log("qui loggo",this.todo);
+      console.log("qui loggoo",this.todo);
       this.todoForm.patchValue({
         id: this.todo.id,
         title: this.todo.title,
         description: this.todo.description,
+        StartDate:moment(this.todo.StartDate).toDate(),
+        EndDate:moment(this.todo.EndDate).toDate()
       })
     }
   }
@@ -81,12 +87,16 @@ export class TodoFormComponent implements OnChanges {
     this.stepsArray.push({
       done: false,
       title: '',
-      id: this.stepsArray.length
+      id: this.stepsArray.length,
+      Duration:0,
+      StartDate:moment().toDate()
     });
     this.stepsControl.push(this.fb.group({
       done: false,
       title: ['', Validators.required],
-      id: this.stepsArray.length>0 ? this.stepsArray.length-1 : this.stepsArray.length
+      id: this.stepsArray.length>0 ? this.stepsArray.length-1 : this.stepsArray.length,
+      Duration:[0, [Validators.required,Validators.min(0)]],
+      StartDate:moment().toDate()
     }));
   }
   remStepToForm(indice:number) {
