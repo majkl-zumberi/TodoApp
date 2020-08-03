@@ -29,6 +29,8 @@
       "id": 0,
       "title": "Ripasso angular",
       "description": "ripasso dei modules| corso Angular avanzato",
+      "StartDate": "2020-08-03T18:31:14.974Z",
+      "EndDate": "2020-08-17T18:31:14.974Z",
       "forUser": [
         {
           "username": "carlo"
@@ -38,22 +40,30 @@
         {
           "id": 0,
           "done": true,
-          "title": "core"
+          "title": "core",
+          "Duration": 3,
+          "StartDate": "2020-08-03T18:31:14.974Z"
         },
         {
           "id": 1,
           "done": true,
-          "title": "shared"
+          "title": "shared",
+          "Duration": 6,
+          "StartDate": "2020-08-03T18:31:14.974Z"
         },
         {
           "id": 2,
           "done": true,
-          "title": "features"
+          "title": "features",
+          "Duration": 0,
+          "StartDate": "2020-08-03T18:31:14.974Z"
         },
         {
           "id": 3,
           "done": true,
-          "title": "Pratica"
+          "title": "Pratica",
+          "Duration": 1,
+          "StartDate": "2020-08-03T18:31:14.974Z"
         }
       ]
     },
@@ -73,29 +83,48 @@
         {
           "id": 0,
           "done": true,
-          "title": "dynamicDao"
+          "title": "dynamicDao",
+          "Duration": 1,
+          "StartDate": "2020-08-03T18:31:14.974Z"
         },
         {
           "id": 1,
           "done": true,
-          "title": "cgf.xml"
+          "title": "cgf.xml",
+          "Duration": 1,
+          "StartDate": "2020-08-03T18:31:14.974Z"
         },
         {
           "id": 2,
           "done": false,
-          "title": "Teoria"
+          "title": "Teoria",
+          "Duration": 1,
+          "StartDate": "2020-08-03T18:31:14.974Z"
         },
         {
           "id": 3,
           "done": false,
-          "title": "guardare tutorials su youtube"
+          "title": "guardare tutorials su youtube",
+          "Duration": 1,
+          "StartDate": "2020-08-03T18:31:14.974Z"
         },
         {
           "id": 4,
           "done": true,
-          "title": "riguardare i Beans di spring"
+          "title": "riguardare i Beans di spring",
+          "Duration": 1,
+          "StartDate": "2020-08-03T18:31:14.974Z"
+        },
+        {
+          "id": 5,
+          "done": false,
+          "title": "1234",
+          "Duration": 1,
+          "StartDate": "2020-08-03T18:41:35.186Z"
         }
-      ]
+      ],
+      "StartDate": "2020-09-03T18:31:14.974Z",
+      "EndDate": "2020-09-17T18:31:14.974Z"
     }
   ]
 }
