@@ -6,12 +6,20 @@
           <div
             class="uk-margin uk-width-xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
             <h3 class="uk-card-title uk-text-center">Todo pubblici</h3>
-            <div class="flexy">
-              <app-input-text [label]="'aggiungi un nuovo todo'" name="newTodo" [(ngModel)]="newTodo"></app-input-text>
-              <button class="uk-button uk-button-danger round" [disabled]="newTodo === ''"
-                (click)="addNewTodo(newTodo)">aggiungi</button>
-            </div>
-            valore:{{newTodo}}
+            <ul uk-accordion>
+              <li>
+                <a class="uk-accordion-title" href="#">Aggiungi un nuovo Todo</a>
+                <div class="uk-accordion-content">
+                  <div class="flexyos">
+                    <ejs-datepicker [(ngModel)]="newDate" (change)="onCalendarChange($event)"  placeholder='Seleziona data scadenza Todo'></ejs-datepicker>
+                    <app-input-text [label]="'aggiungi un nuovo todo'" name="newTodo" [(ngModel)]="newTodo"></app-input-text>
+                    <button class="uk-button uk-button-danger round template-btn" [disabled]="newTodo === '' || newDate === null"
+                            (click)="addNewTodo(newTodo)">aggiungi</button>
+                  </div>
+                  valore:{{newTodo}}
+                </div>
+              </li>
+            </ul>
             <ng-container *ngIf="httperror">
               <div class="uk-alert-danger" uk-alert>
                 <p>{{httperror}}</p>
