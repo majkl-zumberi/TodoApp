@@ -9,3 +9,23 @@
     align-items: baseline;
     justify-content: space-between;
 }
+.flexyos{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "cal todo"
+    "btn btn";
+  align-items: center;
+  button{
+    grid-area: btn;
+    max-width: 80%;
+    margin-left: 10%;
+  }
+  ejs-datepicker{
+    grid-area: cal;
+  }
+  app-input-text{
+    grid-area: todo;
+    margin-left: 2em;
+  }
+}
