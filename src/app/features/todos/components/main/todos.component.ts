@@ -5,7 +5,7 @@ import { Todo } from 'src/app/core/model/todo.interface';
 import { TodosFacadeService } from '../services/todos-facade.service';
 import { Store, select } from '@ngrx/store';
 import { selectTodos, usersListOfTodo } from 'src/app/redux';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -24,6 +24,7 @@ export class TodosComponent implements OnInit {
 
   constructor(private todosFacadeService: TodosFacadeService, private Store:Store) { }
   newTodo = "";
+  newDate: Date=null;
   ngOnInit(): void {
     this.todosFacadeService.todoErr$.subscribe(err=>this.httperror=err);
   }
@@ -39,7 +40,11 @@ export class TodosComponent implements OnInit {
 
   addNewTodo(newTodo:string){
     console.log(`user try to add new todo: ${newTodo}`);
-    let todoToAdd= {title:newTodo,description:'',steps:[],forUser:[]} as Todo
+    console.log(`data di oggi ${moment().toDate()}`);
+    console.log(`data di domani ${moment().add(1, 'day').toDate()}`);
+    let todoToAdd= {title:newTodo,description:'',steps:[],forUser:[],StartDate:moment().toDate(),EndDate:moment(this.newDate).toDate()} as Todo
+    console.log("sto per aggiungere il nuovo todo");
+    console.log(todoToAdd);
     this.todosFacadeService.addNewTodo(todoToAdd);
   }
   assignToUser(event,todo:Todo){
@@ -47,5 +52,11 @@ export class TodosComponent implements OnInit {
     console.log("user try to add this todo into his todo page");
     console.log(todo);
     this.todosFacadeService.assignTodo(todo,event);
+  }
+
+  onCalendarChange($event: any) {
+    console.log("evento ",$event.value);
+    this.newDate=$event.value;
+    console.log("model",this.newDate);
   }
 }
