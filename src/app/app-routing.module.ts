@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule), canLoad:[CanloadloginGuard],canActivate:[CanActivateLoginGuard] },
   { path: 'shared-with-me', loadChildren: () => import('./features/tods-shared/tods-shared.module').then(m => m.TodsSharedModule), canLoad:[CanLoadCompsGuard],canActivate:[CanActivateCompsGuard] },
   { path: 'profile', loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule), canLoad:[CanLoadCompsGuard],canActivate:[CanActivateCompsGuard] },
-  { path: 'gantt', loadChildren: () => import('./gantt-viewer/gantt-viewer.module').then(m => m.GanttViewerModule) },
+  { path: 'gantt', loadChildren: () => import('./features/gantt-viewer/gantt-viewer.module').then(m => m.GanttViewerModule), canLoad:[CanLoadCompsGuard],canActivate:[CanActivateCompsGuard] },
   {path:'**',component: PageNotFoundComponent},
 ];
 
